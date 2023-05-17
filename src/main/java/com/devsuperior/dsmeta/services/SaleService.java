@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Optional;
 
+import com.devsuperior.dsmeta.dto.SaleReportDTO;
+import com.devsuperior.dsmeta.projections.SaleReportProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,25 +30,25 @@ public class SaleService {
     }
 
     @Transactional(readOnly = true)
-    public Page<SaleMinDTO> getReport(String minDate, String maxDate, String name, Pageable pageable) {
+    public Page<SaleReportDTO> getReport(String minDate, String maxDate, String name, Pageable pageable) {
 
         LocalDate minLocalDate;
         LocalDate maxLocalDate;
 
-        if (maxDate == "") {
+        if (maxDate == null) {
             maxLocalDate = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
         } else {
             maxLocalDate = LocalDate.parse(maxDate);
         }
 
-        if (minDate == "") {
+        if (minDate == null) {
             minLocalDate = maxLocalDate.minusYears(1L);
         } else {
             minLocalDate = LocalDate.parse(minDate);
         }
 
-        Page<Sale> result = repository.searchReport(minLocalDate, maxLocalDate, name, pageable);
-        return result.map(x -> new SaleMinDTO(x));
+        Page<SaleReportProjection> result = repository.searchReport(minLocalDate, maxLocalDate, name, pageable);
+        return result.map(x -> new SaleReportDTO(x));
     }
 
 
