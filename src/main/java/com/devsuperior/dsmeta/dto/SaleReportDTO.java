@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class SaleReportDTO {
 
-    private Integer id;
+    private Long id;
     private LocalDate date;
     private Double amount;
     private String name;
@@ -14,7 +14,7 @@ public class SaleReportDTO {
     public SaleReportDTO() {
     }
 
-    public SaleReportDTO(Integer id, LocalDate date, Double amount, String name) {
+    public SaleReportDTO(Long id, LocalDate date, Double amount, String name) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -28,11 +28,11 @@ public class SaleReportDTO {
         name = projection.getName();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
