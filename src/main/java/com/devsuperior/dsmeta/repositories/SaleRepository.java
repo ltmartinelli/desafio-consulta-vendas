@@ -1,6 +1,5 @@
 package com.devsuperior.dsmeta.repositories;
 
-import com.devsuperior.dsmeta.dto.SaleReportDTO;
 import com.devsuperior.dsmeta.projections.SaleReportProjection;
 import com.devsuperior.dsmeta.projections.SaleSummaryProjection;
 import org.springframework.data.domain.Page;
@@ -25,5 +24,4 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
             "WHERE (tb_sales.date BETWEEN :minDate AND :maxDate) " +
             "GROUP BY tb_seller.name")
     List<SaleSummaryProjection> searchSummary(LocalDate minDate, LocalDate maxDate);
-
 }

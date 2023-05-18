@@ -3,7 +3,6 @@ package com.devsuperior.dsmeta.services;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +67,4 @@ public class SaleService {
             return LocalDate.parse(minDate);
         }
     }
-
-
 }
